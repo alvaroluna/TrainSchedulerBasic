@@ -1,10 +1,3 @@
-////////////////////////////////////////////////////////
-////////////////////  TRAIN        ////////////////////
-///////////////////      SCHEDULE ////////////////////
-/////////////////////////////////////////////////////
-
-
-
 // Global Variables
 var trainName = "";
 var trainDestination = "";
@@ -23,12 +16,14 @@ var elTimeFreq = $("#time-freq").mask("00");
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyDRc8WHqEiPmt5eZgB_HxRygGA31dqHKPg",
-    authDomain: "train-schedule-bd950.firebaseapp.com",
-    databaseURL: "https://train-schedule-bd950.firebaseio.com",
-    projectId: "train-schedule-bd950",
-    storageBucket: "train-schedule-bd950.appspot.com",
-    messagingSenderId: "236709814864"
+    apiKey: "AIzaSyAIITGd5dxhrMW_rqa0HAjTRJ1aMUsLm2I",
+    authDomain: "ucbtestproject.firebaseapp.com",
+    databaseURL: "https://ucbtestproject.firebaseio.com",
+    projectId: "ucbtestproject",
+    storageBucket: "ucbtestproject.appspot.com",
+    messagingSenderId: "973281422270",
+    appId: "1:973281422270:web:51e34404f4026ae53a27ef",
+    measurementId: "G-DJP68T1K8C"
 };
 
 firebase.initializeApp(config);
@@ -36,7 +31,7 @@ firebase.initializeApp(config);
 // Assign the reference to the database to a variable named 'database'
 var database = firebase.database();
 
-database.ref("/trains").on("child_added", function(snapshot) {
+database.ref("/trains").on("child_added", function (snapshot) {
 
     //  create local variables to store the data from firebase
     var trainDiff = 0;
@@ -70,15 +65,15 @@ database.ref("/trains").on("child_added", function(snapshot) {
 
     // Hover view of delete button
     $("tr").hover(
-        function() {
+        function () {
             $(this).find("span").show();
         },
-        function() {
+        function () {
             $(this).find("span").hide();
         });
 
     // STARTED BONUS TO REMOVE ITEMS ** not finished **
-    $("#table-data").on("click", "tr span", function() {
+    $("#table-data").on("click", "tr span", function () {
         console.log(this);
         var trainRef = database.ref("/trains/");
         console.log(trainRef);
@@ -86,7 +81,7 @@ database.ref("/trains").on("child_added", function(snapshot) {
 });
 
 // function to call the button event, and store the values in the input form
-var storeInputs = function(event) {
+var storeInputs = function (event) {
     // prevent from from reseting
     event.preventDefault();
 
@@ -118,7 +113,7 @@ var storeInputs = function(event) {
 };
 
 // Calls storeInputs function if submit button clicked
-$("#btn-add").on("click", function(event) {
+$("#btn-add").on("click", function (event) {
     // form validation - if empty - alert
     if (elTrain.val().length === 0 || elTrainDestination.val().length === 0 || elTrainTime.val().length === 0 || elTimeFreq === 0) {
         alert("Please Fill All Required Fields");
@@ -129,7 +124,7 @@ $("#btn-add").on("click", function(event) {
 });
 
 // Calls storeInputs function if enter key is clicked
-$('form').on("keypress", function(event) {
+$('form').on("keypress", function (event) {
     if (event.which === 13) {
         // form validation - if empty - alert
         if (elTrain.val().length === 0 || elTrainDestination.val().length === 0 || elTrainTime.val().length === 0 || elTimeFreq === 0) {
